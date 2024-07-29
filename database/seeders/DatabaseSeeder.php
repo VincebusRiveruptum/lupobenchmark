@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ArchitectureSeeder::class,
             MemoryTypeSeeder::class,
 
+            FamilySeeder::class,
             CpuSeeder::class,
         ]);
 

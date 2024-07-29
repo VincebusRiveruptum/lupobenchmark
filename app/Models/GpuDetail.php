@@ -7,24 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class GpuMemoryDetail extends Model
+class GpuDetail extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'memory_type_id',
-        'memory_bus_width',
-        'memory_clock',
-        'memory_size',
+        'manufacturer_id',
+        'architecture_id',
+        'gpu_name',
+        'process_size',
+        'transistors',
     ];
 
     // === Relationships ====
 
-    public function memory_type(): BelongsTo{
-        return $this->belongsTo(MemoryType::class, 'memory_type_id');
-    }
-
     public function gpus(): HasMany{
         return $this->hasMany(Gpu::class);
+    }
+
+    public function manufacturer(): BelongsTo{
+        return $this->belongsTo(Manufacturer::class, 'manufacturer_id');
     }
 }

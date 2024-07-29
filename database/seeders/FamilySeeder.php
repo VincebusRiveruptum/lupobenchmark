@@ -26,8 +26,9 @@ class FamilySeeder extends Seeder
                 $i++;
 
                 Family::create([
-                    'manufacturer_id' => Manufacturer::find($csvLine[0])->id ?? null,
-                    'name' => $csvLine[1],
+                    'id' => $csvLine[0],
+                    'manufacturer_id' => Manufacturer::find($csvLine[1])->id ?? null,
+                    'name' => $csvLine[2],
                 ]);
             }
             echo 'CPU/GPU Families readed from the CSV file: ' . $i;
