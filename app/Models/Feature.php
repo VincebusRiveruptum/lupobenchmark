@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\pivots\CpuFeature;
 use App\Models\pivots\FeatureGpu;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
