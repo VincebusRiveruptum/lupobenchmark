@@ -20,8 +20,8 @@ class Cpu extends Model
         'model_name',
         'release_date',
         'cores',
-        'e-cores',
-        'p-cores',
+        'e_cores',
+        'p_cores',
         'threads',
         'l1_cache',
         'l2_cache',
@@ -31,7 +31,8 @@ class Cpu extends Model
         'source',
     ];
 
-    public function casts(): array{
+    public function casts(): array
+    {
         return [
             'release_date' => 'datetime',
         ];
@@ -42,21 +43,25 @@ class Cpu extends Model
         return $this->belongsTo(HardwareDevice::class, 'hardware_device_id');
     }
     */
-    public function architecture(): BelongsTo{
+    public function architecture(): BelongsTo
+    {
         return $this->belongsTo(Architecture::class, 'architecture_id');
     }
 
-    public function family(): BelongsTo{
+    public function family(): BelongsTo
+    {
         return $this->belongsTo(Family::class, 'family_id');
     }
 
-    public function cpu_socket():BelongsTo{
+    public function cpu_socket(): BelongsTo
+    {
         return $this->belongsTo(CpuSocket::class, 'cpu_socket_id');
     }
 
     // == Polymorphic Relationship ==
 
-    public function hardware_devices(): MorphOne{
+    public function hardware_devices(): MorphOne
+    {
         return $this->morphOne(HardwareDevice::class, 'hardwareDeviceable');
     }
 }

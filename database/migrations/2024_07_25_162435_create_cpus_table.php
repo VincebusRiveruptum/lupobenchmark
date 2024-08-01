@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('model_name');
             $table->dateTime('release_date')->nullable();
             $table->integer('cores')->nullable();
+            
             $table->integer('e_cores')->nullable();
             $table->integer('p_cores')->nullable();
             $table->integer('threads')->nullable();
