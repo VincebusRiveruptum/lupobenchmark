@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCpuSocketRequest;
 use App\Http\Requests\UpdateCpuSocketRequest;
+use App\Http\Resources\CpuResource;
 use App\Http\Resources\CpuSocketResource;
 use App\Models\CpuSocket;
 use Illuminate\Http\JsonResponse;
@@ -27,16 +28,11 @@ class CpuSocketController extends Controller
         //
         $validated = $request->validated();
 
-        CpuSocket::create([
+        $newCpuSocket = CpuSocket::create([
             'name' => $validated['name'],
         ]);
 
-        return new JsonResponse(
-            data:[
-                'data'=> $validated,
-            ],
-            status: JsonResponse::HTTP_OK,
-        );
+        return CpuSocketResource::make($newCpuSocket)->response();
     }
 
     /**
@@ -44,12 +40,7 @@ class CpuSocketController extends Controller
      */
 
     public function show(CpuSocket $cpuSocket){
-        return new JsonResponse(
-            data:[
-                'data' => $cpuSocket,
-            ],
-            status: JsonResponse::HTTP_OK,
-        );
+        return CpuSocketResource::make($cpuSocket)->response();
     }
 
     /**
@@ -61,13 +52,7 @@ class CpuSocketController extends Controller
         $cpuSocket->update([
             'name' => $validated['name'],
         ]);
-
-        return new JsonResponse(
-            data:[
-                'data' => $validated,
-            ],
-            status: JsonResponse::HTTP_OK,
-        );
+        return CpuSocketResource::make($cpuSocket)->response();
     }
 
     /**
@@ -76,11 +61,6 @@ class CpuSocketController extends Controller
     public function destroy(CpuSocket $cpuSocket){
         $cpuSocket->delete();
 
-        return new JsonResponse(
-            data: [
-                'data' => $cpuSocket,
-            ],
-            status: JsonResponse::HTTP_OK,
-        );
+        return CpuSocketResource::make($cpuSocket)->response();
     }
 }

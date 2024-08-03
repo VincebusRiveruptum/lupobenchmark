@@ -15,7 +15,12 @@ class CpuController extends Controller
      */
     public function index()
     {
-        $cpus = Cpu::paginate(10);
+        $cpus = Cpu::with([
+            'architecture',
+            'family',
+            'cpu_socket',
+            
+        ])->paginate(10);
 
 
         /*
@@ -83,12 +88,7 @@ class CpuController extends Controller
      */
     public function show(Cpu $cpu)
     {
-        return new JsonResponse(
-            data: [
-                'data' => $cpu,
-            ],
-            status: JsonResponse::HTTP_OK,
-        );
+        return CpuResource::make($cpu);
     }
 
     /**

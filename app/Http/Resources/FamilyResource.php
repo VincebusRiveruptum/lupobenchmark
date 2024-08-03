@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CpuSocketResource extends JsonResource
+class FamilyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,6 +15,8 @@ class CpuSocketResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'manufacturer_id' => ManufacturerResource::collection($this->whenLoaded('manufacturer')),
+            'type' => $this->type,
             'name' => $this->name,
         ];
     }

@@ -16,9 +16,9 @@ class CpuResource extends JsonResource
     {
         return [
             'hardware_device_id' => $this->id,
-            'architecture_id' => $this->architecture_id,
-            'family_id' => $this->family_id,
-            'cpu_socket_id' => $this->cpu_socket_id,
+            'architecture_id' => ArchitectureResource::make($this->whenLoaded('architecture')),
+            'family_id' => FamilyResource::make($this->whenLoaded('family')),
+            'cpu_socket_id' => CpuSocketResource::make($this->whenLoaded('cpu_socket')),
             'model_name' => $this->model_name,
             'release_date' => $this->release_date,
             'cores' => $this->cores,
