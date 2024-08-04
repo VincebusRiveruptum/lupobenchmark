@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreArchitectureRequest;
+use App\Http\Requests\UpdateArchitectureRequest;
 use App\Http\Resources\ArchitectureResource;
 use App\Models\Architecture;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class ArchitectureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Architecture $architecture)
+    public function update(UpdateArchitectureRequest $request, Architecture $architecture)
     {
         $validated = $request->validated();
 

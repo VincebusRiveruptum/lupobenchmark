@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateArchitectureRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateArchitectureRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,9 @@ class UpdateArchitectureRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'manufacturer_id' => ['sometimes', Rule::exists('manufacturers', 'id')],
+            'type' => ['sometimes', 'string', 'max:255'],
+            'name' => ['sometimes', 'string', 'max:255'],
         ];
     }
 }
