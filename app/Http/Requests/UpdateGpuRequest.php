@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateGpuRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateGpuRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,13 @@ class UpdateGpuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'hardware_device_id' => ['nullable'],
+            'gpu_detail_id' => ['sometimes', Rule::exists('gpu_details', 'id')],
+            'gpu_render_detail_id' => ['sometimes', Rule::exists('gpu_render_details','id')],
+            'gpu_memory_detail_id' => ['sometimes', Rule::exists('gpu_memory_details', 'id')],
+            'gpu_bus_interface_id' => ['sometimes', Rule::exists('gpu_bus_interfaces', 'id')],
+            'model_name' => ['nullable', 'string', 'max:255'],
+            'release_date' => ['nullable', 'date'],
         ];
     }
 }

@@ -26,7 +26,7 @@ class Gpu extends Model
     ];
 
     public function casts(): array{
-        return [
+        return [    
             'release_date' => 'datetime',
         ];
     }
