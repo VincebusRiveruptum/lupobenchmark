@@ -19,7 +19,7 @@ class CpuController extends Controller
             'architecture',
             'family',
             'cpu_socket',
-            
+
         ])->paginate(10);
 
 
@@ -75,12 +75,7 @@ class CpuController extends Controller
             'source' => $validated['source'],
         ]);
 
-        return new JsonResponse(
-            data: [
-                'data' => $newCpu
-            ],
-            status: JsonResponse::HTTP_CREATED,
-        );
+       return CpuResource::make($newCpu);
     }
 
     /**
@@ -106,7 +101,7 @@ class CpuController extends Controller
     {
         $validated = $request->validated();
 
-        $cpu->update([
+        $updatedCpu = $cpu->update([
             //'hardware_device_id' => $validated['hardware_device_id'],
             'architecture_id' => $validated['architecture_id'],
             'family_id' => $validated['family_id'],
@@ -125,28 +120,15 @@ class CpuController extends Controller
             'source' => $validated['source'],
         ]);
 
-        return new JsonResponse(
-            data: [
-                'data' => $request,
-            ],
-            status: JsonResponse::HTTP_OK,
-        );
+        return CpuResource::make($updatedCpu);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cpu $cpu)
-    {
-        $removed = $cpu;
-
+    public function destroy(Cpu $cpu){
         $cpu->delete();
 
-        return new JsonResponse(
-            data: [
-                'data' => $removed
-            ],
-            status: JsonResponse::HTTP_OK,
-        );
+        return CpuResource::make($cpu);
     }
 }

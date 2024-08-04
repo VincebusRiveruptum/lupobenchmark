@@ -41,11 +41,21 @@ class Gpu extends Model
         return $this->hasMany(FeatureGpu::class);
     }
 
-    /*
     public function gpu_detail(): BelongsTo{
-        return $this->belongsTo()
+        return $this->belongsTo(GpuDetail::class, 'gpu_detail_id');
     }
-    */
+
+    public function gpu_render_detail(): BelongsTo{
+        return $this->belongsTo(GpuRenderDetail::class, 'gpu_render_detail_id');
+    }
+
+    public function gpu_memory_detail(): BelongsTo{
+        return $this->belongsTo(GpuMemoryDetail::class, 'gpu_memory_detail_id');
+    }
+
+    public function gpu_bus_interface(): BelongsTo{
+        return $this->belongsTo(GpuBusInterface::class, 'gpu_bus_interface_id');
+    }
 
     // == Polymorphic relation ==
 
