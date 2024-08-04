@@ -14,6 +14,13 @@ class GpuRenderDetailResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'shaders' => $this->shaders,
+            'tmus' => $this->tmus,
+            'rops' => $this->rops,
+            'tensor' => $this->tensor,
+            'sm' => $this->sm,
+            'rt_cores' => $this->rt_cores,
+        ];
     }
 }

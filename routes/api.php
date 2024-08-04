@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CpuController;
 use App\Http\Controllers\CpuSocketController;
+use App\Http\Controllers\GpuController;
 use App\Http\Controllers\ManufacturerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,4 +20,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::apiResource('/cpu-sockets', CpuSocketController::class);
     Route::apiResource('/manufacturers', ManufacturerController::class);
+    Route::apiResource('/gpu', GpuController::class);
 });

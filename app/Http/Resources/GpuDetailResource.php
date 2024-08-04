@@ -14,6 +14,12 @@ class GpuDetailResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'manufacturer_id' => ManufacturerResource::make($this->whenLoaded('manufacturer')),
+            'architecture_id' => ArchitectureResource::make($this->whenLoaded('architecture')),
+            'gpu_name' => $this->gpu_name,
+            'process_size' => $this->process_size,
+            'transistors' => $this->transistors,
+        ];
     }
 }
