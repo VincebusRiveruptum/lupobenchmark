@@ -27,10 +27,15 @@ class DatabaseSeeder extends Seeder
             CpuSeeder::class,
         ]);
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'testing1234',
         ]);
+
+        $user
+        ->addMedia(base_path('/public/assets/placeholder.png'))
+        ->toMediaCollection();
+
     }
 }

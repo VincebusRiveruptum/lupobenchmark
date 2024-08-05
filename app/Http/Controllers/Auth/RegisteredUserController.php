@@ -32,6 +32,10 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->string('password')),
         ]);
 
+        $user
+            ->addMedia(base_path('/public/assets/placeholder.png'))
+            ->toMediaCollection();
+
         event(new Registered($user));
 
         Auth::login($user);

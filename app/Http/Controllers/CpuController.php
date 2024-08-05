@@ -22,7 +22,6 @@ class CpuController extends Controller
 
         ])->paginate(10);
 
-
         /*
 
         $collection = CpuResource::collection($cpus);
@@ -83,15 +82,7 @@ class CpuController extends Controller
      */
     public function show(Cpu $cpu)
     {
-        return CpuResource::make($cpu);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cpu $cpu)
-    {
-        //
+        return CpuResource::make($cpu)->response();
     }
 
     /**
